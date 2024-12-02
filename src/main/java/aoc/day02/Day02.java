@@ -1,14 +1,12 @@
 package aoc.day02;
 
 import aoc.Day;
-import aoc.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Day02 implements Day {
 
