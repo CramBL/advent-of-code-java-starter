@@ -1,7 +1,6 @@
 package aoc.day01;
 
 import aoc.Day;
-import aoc.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,7 +44,6 @@ public class Day01 implements Day {
         for (int d : distances) {
             sum += d;
         }
-
 
         return String.valueOf(sum);
     }
