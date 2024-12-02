@@ -52,10 +52,38 @@ public class Day02 implements Day {
         return String.valueOf(safe_reports);
     }
 
+    public static boolean isReportSafeTolerate1(List<Integer> report) {
+        // Check if the report is already safe (increasing or decreasing with valid
+        // level differences)
+        if (isAllIncreasingOrDecreasing(report) && isLevelDistanceOnetoThree(report)) {
+            return true;
+        }
+
+        // Try removing each level once to see if it becomes safe
+        for (int i = 0; i < report.size(); i++) {
+            List<Integer> modified_report = new ArrayList<>(report);
+            modified_report.remove(i);
+
+            if (isAllIncreasingOrDecreasing(modified_report) && isLevelDistanceOnetoThree(modified_report)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     @Override
     public String part2(String input) {
+        var reports = inputToIntegerLists(input);
+        int safe_reports = 0;
 
-        return String.valueOf(2);
+        for (var report : reports) {
+            if (isReportSafeTolerate1(report)) {
+                ++safe_reports;
+            }
+        }
+
+        return String.valueOf(safe_reports);
     }
 
 }
