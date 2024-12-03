@@ -10,10 +10,10 @@ public class Day03 implements Day {
         U,
         L,
         LParen,
-        DigitA,
+        FirstDigitA,
         DigitOrComma,
         Comma,
-        DigitB,
+        FirstDigitB,
         DigitOrRParen,
         RParen;
     }
@@ -42,16 +42,12 @@ public class Day03 implements Day {
                     break;
                 case LParen:
                     valid = c == '(';
-                    expect_next = CharNext.DigitA;
+                    expect_next = CharNext.FirstDigitA;
                     break;
-                case DigitA:
+                case FirstDigitA:
                     valid = Character.isDigit(c);
                     numA += c;
-                    if (numA.length() == 3) {
-                        expect_next = CharNext.Comma;
-                    } else {
-                        expect_next = CharNext.DigitOrComma; 
-                    }
+                    expect_next = CharNext.DigitOrComma;
                     break;
                 case DigitOrComma:
                     valid = Character.isDigit(c) || c == ',';
@@ -63,22 +59,19 @@ public class Day03 implements Day {
                             expect_next = CharNext.DigitOrComma; 
                         }
                     } else if (c == ',') {
-                        expect_next = CharNext.DigitB;
+                        expect_next = CharNext.FirstDigitB;
                     }
                     break;
                 case Comma:
                     valid = c == ',';
-                    if (c == ',') {
-                        expect_next = CharNext.DigitB;
+                    if (valid) {
+                        expect_next = CharNext.FirstDigitB;
                     }
-                case DigitB:
+                    break;
+                case CharNext.FirstDigitB:
                     valid = Character.isDigit(c);
                     numB += c;
-                    if (numB.length() == 3) {
-                        expect_next = CharNext.RParen;
-                    } else {
-                        expect_next = CharNext.DigitOrRParen; 
-                    }
+                    expect_next = CharNext.DigitOrRParen; 
                     break;
                 case DigitOrRParen:
                     valid = Character.isDigit(c) || c == ')';
@@ -100,7 +93,7 @@ public class Day03 implements Day {
                     break;
                 case RParen:
                     valid = c == ')';
-                    if (c == ')') {
+                    if (valid) {
                         int a = Integer.parseInt(numA);
                         int b = Integer.parseInt(numB);
                         sum += a * b;
@@ -108,6 +101,7 @@ public class Day03 implements Day {
                         numB = "";
                         expect_next = CharNext.M;
                     }
+                    break;
             }
             if (!valid) {
                 numA = "";
