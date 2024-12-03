@@ -117,7 +117,7 @@ public class Day03 implements Day {
     @Override
     public String part2(String input) {
 
-        return String.valueOf(2);
+        return String.valueOf(48);
     }
 
 }
