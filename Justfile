@@ -1,5 +1,8 @@
 GRADLE := "./gradlew"
 
+alias t := test
+alias r := run
+
 @_default:
     just --list --no-aliases
 
