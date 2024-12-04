@@ -38,27 +38,6 @@ The shell for day 1 is already there. These are the steps to add day 2, etc. For
     - Notice the second argument to the script is the part number. It defaults to 1, so now you have to pass it as 2.
 1. Check your solution on adventofcode.com!
 
-## Other ways to run the app
-
-### VSCode
-
-If you are using VSCode, this project comes with a launch template that will prompt you for arguments. Enter just the day (to run part 1) or the day and part to run part 2.
-
-- If you want to run Day 3 part 1, just type `3`
-- If you want to run Day 4 part 2, type `4 2`
-
-### Per-day main method
-
-If you want to run a day directly (e.g. run `Day01.java`) you can just add a `main` method to your `Day01` class:
-
-```java
-public static void main(String[] args) {
-    App.runPart1ForDay(1);
-}
-```
-
-Call `runPart1ForDay` for part 2. **Make sure you specify the correct day number (`1` in the example above)!**
-
 ## Working on previous years
 
 The `App` calls `defaultYear()` which defaults to the current year during December, and the previous year otherwise. If you want to use this starter to work on another year, just hard code the value of `year` in `App.main` to return the year you want.
