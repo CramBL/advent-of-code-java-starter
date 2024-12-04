@@ -10,13 +10,23 @@ public class Day04Test {
     public void testPart1() {
         // Given
         String input = """
+                MMMSXXMASM
+                MSAMXMSMSA
+                AMXSXMAAMM
+                MSAMASMSMX
+                XMASAMXAMM
+                XXAMMXXAMA
+                SMSMSASXSS
+                SAXAMASAAA
+                MAMMMXMMMM
+                MXMXAXMASX
                 """;
 
         // When
         String result = new Day04().part1(input);
 
         // Then
-        assertEquals("1", result);
+        assertEquals("18", result);
     }
 
     @Test
