@@ -6,12 +6,14 @@ import org.junit.jupiter.api.Test;
 
 public class Day06Test {
 
+    String input =
+        """
+        """;
+
     @Test
     public void testPart1() {
         // Given
-        String input =
-            """
-            """;
+        String input = this.input;
 
         // When
         String result = new Day06().part1(input);
@@ -23,9 +25,7 @@ public class Day06Test {
     @Test
     public void testPart2() {
         // Given
-        String input =
-            """
-            """;
+        String input = this.input;
 
         // When
         String result = new Day06().part2(input);
