@@ -53,6 +53,6 @@ public class Day05Test {
         String result = new Day05().part2(this.input);
 
         // Then
-        assertEquals("2", result);
+        assertEquals("123", result);
     }
 }
