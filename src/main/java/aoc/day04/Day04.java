@@ -2,6 +2,7 @@ package aoc.day04;
 
 import aoc.Day;
 import aoc.Utils;
+import javax.sound.midi.Sequence;
 
 public class Day04 implements Day {
 
@@ -230,6 +231,50 @@ public class Day04 implements Day {
 
     @Override
     public String part2(String input) {
-        return String.valueOf(2);
+        var lines = Utils.splitLines(input);
+
+        int seq_count = 0;
+
+        for (int i = 0; i < lines.size(); i++) {
+            var remainder_size = lines.size() - i - 1;
+
+            if (remainder_size > 1) {
+                var curr_line = lines.get(i);
+                var line2 = lines.get(i + 1);
+                var line3 = lines.get(i + 2);
+                // Skips first and last letter
+                for (int j = 1; j < curr_line.length() - 1; j++) {
+                    if (line2.charAt(j) == 'A') {
+                        boolean diag_down_right_ok = false;
+                        boolean diag_down_left_ok = false;
+                        if (
+                            (curr_line.charAt(j - 1) == 'S' &&
+                                line3.charAt(j + 1) == 'M') ||
+                            (curr_line.charAt(j - 1) == 'M' &&
+                                line3.charAt(j + 1) == 'S')
+                        ) {
+                            diag_down_right_ok = true;
+                        }
+                        if (
+                            (curr_line.charAt(j + 1) == 'S' &&
+                                line3.charAt(j - 1) == 'M') ||
+                            (curr_line.charAt(j + 1) == 'M' &&
+                                line3.charAt(j - 1) == 'S')
+                        ) {
+                            diag_down_left_ok = true;
+                        }
+                        if (diag_down_left_ok && diag_down_right_ok) {
+                            System.out.println(
+                                "X-MAS with A at l=" + (i + 1) + " [" + j + ']'
+                            );
+                            seq_count += 1;
+                        }
+                    }
+                }
+            }
+            System.out.println(i + ": seqs=" + seq_count);
+        }
+
+        return String.valueOf(seq_count);
     }
 }
