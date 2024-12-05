@@ -9,8 +9,8 @@ alias r := run
 run DAY="1" PART="1":
     {{GRADLE}} run --args="{{DAY}} {{PART}}"
 
-test-all:
-    {{GRADLE}} test
+test-all *ARGS:
+    {{GRADLE}} test {{ARGS}}
 
 [linux]
 test DAY="1" PART="1":
