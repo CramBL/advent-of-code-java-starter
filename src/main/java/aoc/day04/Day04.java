@@ -2,7 +2,6 @@ package aoc.day04;
 
 import aoc.Day;
 import aoc.Utils;
-import javax.sound.midi.Sequence;
 
 public class Day04 implements Day {
 
