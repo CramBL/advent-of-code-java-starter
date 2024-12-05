@@ -21,3 +21,9 @@ test DAY="1" PART="1":
 [windows]
 test DAY="01" PART="1":
     {{GRADLE}} test --tests "Day{{DAY}}Test.testPart{{PART}}" --info
+
+# generate boilerplate for the given day. Assumes day 01 boilerplate existss
+gen-day DAY:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    ls -l src/main
