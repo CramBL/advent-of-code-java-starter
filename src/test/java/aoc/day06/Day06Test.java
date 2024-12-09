@@ -54,6 +54,12 @@ public class Day06Test {
         assertEquals("41", result);
     }
 
+    // Option 1: [3,6]
+    // Option 2: [6,7]
+    // Option 3: [7,7]
+    // Option 4: [1,8]
+    // Option 5: [3,8]
+    // Option 6: [7,9]
     @Test
     public void testPart2() {
         // Given
@@ -63,6 +69,6 @@ public class Day06Test {
         String result = new Day06().part2(input);
 
         // Then
-        assertEquals("2", result);
+        assertEquals("6", result);
     }
 }

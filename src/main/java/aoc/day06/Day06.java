@@ -107,8 +107,65 @@ public class Day06 implements Day {
         return String.valueOf(count_visited_points);
     }
 
+    private static boolean isLoopCreated(List<String> lines, Pair<Integer, Integer> obstaclePos) {
+        var guard_initial = findGuardPosition(lines);
+        var guard_pos = guard_initial.getFirst();
+        var guard_direction = guard_initial.getSecond();
+
+        var right_boundary = lines.get(0).length() - 1;
+        var bottom_boundary = lines.size() - 1;
+        var visited_state_set = new HashSet<String>();
+
+        while (true) {
+            var x = guard_pos.getFirst();
+            var y = guard_pos.getSecond();
+
+            var currentState = x + "," + y + "," + guard_direction;
+            if (visited_state_set.contains(currentState)) {
+                return true;
+            }
+            visited_state_set.add(currentState);
+
+            switch (guard_direction) {
+                case Top -> y -= 1;
+                case Right -> x += 1;
+                case Bottom -> y += 1;
+                case Left -> x -= 1;
+            }
+
+            if (y < 0 || x < 0 || y > bottom_boundary || x > right_boundary) {
+                return false;
+            }
+
+            if (x == obstaclePos.getFirst() && y == obstaclePos.getSecond()) {
+                guard_direction = guard_direction.turnRight();
+            } else {
+                var nextChar = lines.get(y).charAt(x);
+                if (nextChar == '#') {
+                    guard_direction = guard_direction.turnRight();
+                } else {
+                    guard_pos = new Pair<>(x, y);
+                }
+            }
+        }
+    }
+
     @Override
     public String part2(String input) {
-        return String.valueOf(2);
+        var lines = Utils.splitLines(input);
+        var obstacles = new HashSet<Pair<Integer, Integer>>();
+
+        for (int y = 0; y < lines.size(); y++) {
+            for (int x = 0; x < lines.get(y).length(); x++) {
+                if (lines.get(y).charAt(x) == '.') {
+                    var obstacle_pos = new Pair<>(x, y);
+                    if (isLoopCreated(lines, obstacle_pos)) {
+                        obstacles.add(obstacle_pos);
+                    }
+                }
+            }
+        }
+
+        return String.valueOf(obstacles.size());
     }
 }
