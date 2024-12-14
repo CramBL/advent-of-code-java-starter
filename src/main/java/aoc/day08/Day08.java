@@ -85,6 +85,55 @@ public class Day08 implements Day {
 
     @Override
     public String part2(String input) {
-        return String.valueOf(2);
+        var lines = Utils.splitLines(input);
+        var right_boundary = lines.getFirst().length() - 1;
+        var bottom_boundary = lines.size() - 1;
+
+        var antennas_per_freq = parseGridAntennas(lines).values();
+
+        var anti_nodes = new HashSet<Pair<Integer, Integer>>();
+
+        for (var antennas : antennas_per_freq) {
+            for (var pA : antennas) {
+                for (var pB : antennas) {
+                    if (pA.equals(pB)) {
+                        continue;
+                    } else {
+                        anti_nodes.add(pA);
+                        anti_nodes.add(pB);
+                    }
+                    int pAx = pA.getFirst();
+                    int pBx = pB.getFirst();
+                    int pAy = pA.getSecond();
+                    int pBy = pB.getSecond();
+
+                    int dx = pAx - pBx;
+                    int dy = pAy - pBy;
+
+                    boolean anA_within_grid = true;
+                    boolean anB_within_grid = true;
+                    int iter = 0;
+                    while (anA_within_grid || anB_within_grid) {   
+                        iter += 1;
+                        var anA = new Pair<>(pAx + dx * iter, pAy + dy * iter);
+                        var anB = new Pair<>(pBx - dx * iter, pBy - dy * iter);
+                        if (isPointWithinGrid(right_boundary, bottom_boundary, anA)) {
+                            System.out.println("AN " + anA);
+                            anti_nodes.add(anA);
+                        } else {
+                            anA_within_grid = false;
+                        }
+                        if (isPointWithinGrid(right_boundary, bottom_boundary, anB)) {
+                            System.out.println("AN " + anB);
+                            anti_nodes.add(anB);
+                        } else {
+                            anB_within_grid = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return String.valueOf(anti_nodes.size());
     }
 }
