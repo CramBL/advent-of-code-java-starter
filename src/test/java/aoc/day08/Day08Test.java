@@ -6,9 +6,20 @@ import org.junit.jupiter.api.Test;
 
 public class Day08Test {
 
-    String input =
-        """
-        """;
+    String input = """
+            ......#....#
+            ...#....0...
+            ....#0....#.
+            ..#....0....
+            ....0....#..
+            .#....A.....
+            ...#........
+            #......#....
+            ........A...
+            .........A..
+            ..........#.
+            ..........#.
+                    """;
 
     @Test
     public void testPart1() {
@@ -19,7 +30,7 @@ public class Day08Test {
         String result = new Day08().part1(input);
 
         // Then
-        assertEquals("1", result);
+        assertEquals("14", result);
     }
 
     @Test
